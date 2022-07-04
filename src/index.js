@@ -1,17 +1,34 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { Form } from "./Form"
+import {EasyHTTP} from './EasyHTTP-class.js'
+import { List } from "./List"
+const root = document.querySelector("#root")
+const http=new EasyHTTP()
+ 
+function addTasks(task){
+    if(task){  
+        const data={
+            task: task,
+            isCompleted: false
+        }     
+    http.post('https://ajarek-my-database-default-rtdb.europe-west1.firebasedatabase.app/todo/.json',data)
+    }
+    render()
+}
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+function loadTasks(){
+    http.get('https://ajarek-my-database-default-rtdb.europe-west1.firebasedatabase.app/todo/.json')
+    .then(data=>{
+        Object.entries(data).forEach(([key,value])=>{
+        const list=new List(value.task,key)
+        root.appendChild(list.render())
+    })
+})
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+function render(){
+    root.innerHTML=""
+const form = new Form("", (task) => {addTasks(task)})
+root.appendChild(form.render())
+loadTasks()
+}
+render()
