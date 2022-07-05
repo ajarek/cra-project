@@ -8,6 +8,10 @@ export class Input{
     render(){
         const Input = document.createElement('input')
         Input.classList.add('input')
+        Input.style.height = '30px'
+        Input.style.width = '50%'
+        
+
         Input.setAttribute('placeholder', this.placeholder)
         setTimeout(function () {
             Input.focus();

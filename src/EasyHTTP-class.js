@@ -1,4 +1,3 @@
-import { Alert } from "./alert.js";
 export class EasyHTTP{
     //  HTTP GET Request
 async get(url){
@@ -8,8 +7,7 @@ async get(url){
         return data;
     }
     catch(error){
-        const alert = new Alert('Error: '+error.message,'red','#alert-container')
-        alert.showAlert()
+        return error;
     }
 }
     // HTTP POST Request
@@ -27,8 +25,7 @@ async post(url,data){
         return content;
     }
     catch(error){
-        const alert = new Alert('Error: '+error.message,'red','#alert-container')
-        alert.showAlert()
+       return error;
     }
 }
     // HTTP PUT Request
@@ -46,8 +43,7 @@ async put(url,data){
         return content;
     }
     catch(error){
-        const alert = new Alert('Error: '+error.message,'red','#alert-container')
-        alert.showAlert()
+       return error;
     }
 }
     // HTTP PATCH Request
@@ -65,8 +61,7 @@ async patch(url,data){
         return content;
     }
     catch(error){
-        const alert = new Alert('Error: '+error.message,'red','#alert-container')
-        alert.showAlert()
+       return error;
     }
 }
     // HTTP DELETE Request
@@ -83,8 +78,7 @@ async delete(url){
         return content;
     }
     catch(error){
-        const alert = new Alert('Error: '+error.message,'red','#alert-container')
-        alert.showAlert()
+        return error;
     }
 }
 }
