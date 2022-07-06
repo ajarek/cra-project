@@ -1,6 +1,7 @@
 import { Form } from "./Form"
-import {EasyHTTP} from './EasyHTTP-class.js'
+import {EasyHTTP} from './EasyHTTP-class'
 import { List } from "./List"
+import { Modal } from "./modalEdit"
 const root = document.querySelector("#root")
 const http=new EasyHTTP()
  
@@ -25,6 +26,7 @@ function loadTasks(){
     isCompletedSetting()
     isCompletedSettingDB()
     deleteTaskEvent()
+    editTaskEvent()
 })
 }
 
@@ -69,6 +71,44 @@ function deleteTaskEvent(){
     deleteBtns.forEach(deleteBtn=>{
         deleteBtn.addEventListener('click', deleteTask)
     })
+}
+
+function editTask(e){
+const modal=new Modal(e.target.previousElementSibling.innerHTML,e.target.previousElementSibling.dataset.isCompleted,e.target.dataset.id)
+   root.append(modal.render())
+   saveChangesEvent()
+}
+
+function editTaskEvent(){
+    const editBtns=document.querySelectorAll('.editBtn')
+    editBtns.forEach(editBtn=>{
+        editBtn.addEventListener('click', editTask)
+    }
+    )
+}
+
+function saveChanges(e){
+    console.log(e);
+    const id=e.target.dataset.id
+    const task=e.target.parentNode.children[1].value
+    const isCompleted=e.target.previousElementSibling.value
+    const data={
+        task: task,
+        isCompleted: isCompleted
+    }
+    http.patch(`https://ajarek-my-database-default-rtdb.europe-west1.firebasedatabase.app/todo/${id}.json`,data)
+    .then(()=>{
+        render()
+    }
+    )
+}
+
+function saveChangesEvent(){
+    const saveBtns=document.querySelectorAll('.saveChangesBtn')
+    saveBtns.forEach(saveBtn=>{
+        saveBtn.addEventListener('click', saveChanges)
+    }
+    )
 }
 
 function render(){

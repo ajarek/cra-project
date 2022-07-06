@@ -15,7 +15,7 @@ export class Input{
         Input.style.outline = 'none'
         Input.style.padding = '0 1rem'
         Input.style.fontSize = '1.3rem'
-
+        Input.value = this.text
         Input.setAttribute('placeholder', this.placeholder)
         setTimeout(function () {
             Input.focus();
