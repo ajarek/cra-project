@@ -10,7 +10,11 @@ export class Input{
         Input.classList.add('input')
         Input.style.height = '30px'
         Input.style.width = '50%'
-        
+        Input.style.borderRadius = '0.25rem'
+        Input.style.border = '1px solid gray'
+        Input.style.outline = 'none'
+        Input.style.padding = '0 1rem'
+        Input.style.fontSize = '1.3rem'
 
         Input.setAttribute('placeholder', this.placeholder)
         setTimeout(function () {

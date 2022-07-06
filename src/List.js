@@ -17,8 +17,9 @@ export class List{
     p.textContent = this.text
     p.style.fontSize="1.3rem"
     p.style.width="100%"
+    p.style.cursor="pointer"
     const editBtn = new Button("Edit","#2ecc71")
-    const deleteBtn = new Button("Delete","#e74c3c")
+    const deleteBtn = new Button("Delete","#e74c3c",null,this.id,"deleteBtn")
     li.append(p,editBtn.render(),deleteBtn.render())
     return li
 }

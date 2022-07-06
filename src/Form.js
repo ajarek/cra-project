@@ -9,6 +9,9 @@ export class Form   {
     render() {
     const Form = document.createElement("form")
     Form.classList.add("form")
+    Form.style.display = "flex"
+    Form.style.justifyContent = "flex-start"
+    Form.style.alignItems = "center"
 
     const input = new Input(this.value,(value) => this.value = value, "🖊️")
   

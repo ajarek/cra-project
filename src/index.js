@@ -24,6 +24,7 @@ function loadTasks(){
     })
     isCompletedSetting()
     isCompletedSettingDB()
+    deleteTaskEvent()
 })
 }
 
@@ -54,6 +55,20 @@ paragraph.addEventListener('click',()=>{
     
 })
 })
+}
+
+function deleteTask(e){
+    const id=e.target.dataset.id
+    http.delete(`https://ajarek-my-database-default-rtdb.europe-west1.firebasedatabase.app/todo/${id}.json`)
+    .then(()=>{
+        render()
+    })
+}
+function deleteTaskEvent(){
+    const deleteBtns=document.querySelectorAll('.deleteBtn')
+    deleteBtns.forEach(deleteBtn=>{
+        deleteBtn.addEventListener('click', deleteTask)
+    })
 }
 
 function render(){
