@@ -74,7 +74,8 @@ function deleteTaskEvent(){
 }
 
 function editTask(e){
-const modal=new Modal(e.target.previousElementSibling.innerHTML,e.target.previousElementSibling.dataset.isCompleted,e.target.dataset.id)
+const modal=new Modal(e.target.parentNode.parentNode.firstChild.innerHTML,e.target.parentNode.parentNode.firstChild.dataset.isCompleted,e.target.dataset.id)
+
    root.append(modal.render())
    saveChangesEvent()
 }
